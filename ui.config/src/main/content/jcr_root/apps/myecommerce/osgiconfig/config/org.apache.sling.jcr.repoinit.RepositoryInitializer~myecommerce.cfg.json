@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/myecommerce",
+        "create path (nt:unstructured) /content/dam/myecommerce/jcr:content",
+        "set properties on /content/dam/myecommerce/jcr:content\n  set cq:conf{String} to /conf/myecommerce\n  set jcr:title{String} to \"My AEM eCommerce Site\"\nend"
+    ]
+}

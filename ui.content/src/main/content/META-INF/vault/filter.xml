@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/myecommerce" mode="merge"/>
+    <filter root="/content/myecommerce" mode="merge"/>
+    <filter root="/content/dam/myecommerce" mode="merge">
+        <exclude pattern="/content/dam/myecommerce(/.*)?"/>
+        <include pattern="/content/dam/myecommerce/jcr:content(/.*)?"/>
+    </filter>
+    <filter root="/content/dam/myecommerce/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/myecommerce" mode="merge"/>
+</workspaceFilter>
