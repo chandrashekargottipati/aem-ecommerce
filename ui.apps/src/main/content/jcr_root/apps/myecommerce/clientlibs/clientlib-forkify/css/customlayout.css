@@ -1,0 +1,27 @@
+/* Parent container for half-half layout */
+.half-half-container {
+    display: flex;
+    gap: 20px; /* Space between the two halves */
+    width: 100%;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+}
+
+/* Each half */
+.half-half-container .half {
+    flex: 1; /* Each half takes equal space */
+    min-width: 0; /* Prevent overflow issues */
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .half-half-container {
+        flex-direction: column; /* Stack halves vertically on smaller screens */
+    }
+
+    .half-half-container .half {
+        flex: none; /* Reset flex for stacking */
+        width: 100%; /* Full width on smaller screens */
+    }
+}
