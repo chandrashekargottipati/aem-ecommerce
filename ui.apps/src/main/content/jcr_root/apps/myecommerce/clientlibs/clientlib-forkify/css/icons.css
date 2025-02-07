@@ -1,0 +1,12 @@
+.icon-clock {
+  background: url("/content/dam/myecommerce/icons/clock.svg") no-repeat center;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+.icon-user {
+  background: url("/content/dam/myecommerce/icons/user.svg") no-repeat center;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}

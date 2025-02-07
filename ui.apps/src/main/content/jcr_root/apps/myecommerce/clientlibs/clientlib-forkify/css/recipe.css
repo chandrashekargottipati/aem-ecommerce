@@ -1,179 +1,162 @@
+/* Recipe Component */
 .recipe {
-  background-color: $color-grey-light-1;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
 
-  ///////////
-  // FIGURE
-  &__fig {
-    height: 32rem;
-    position: relative;
-    // transform: scale(1.04) translateY(-1px);
-    transform-origin: top;
+/* Message Styling */
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #444;
+  font-size: 18px;
+  padding: 20px;
+}
 
-    &::before {
-      content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
-      opacity: 0.6;
-    }
-  }
+.message svg {
+  width: 35px;
+  height: 35px;
+  fill: var(--color-primary, #ff6b6b);
+  margin-right: 10px;
+}
 
-  &__img {
-    width: 100%;
-    display: block;
-    height: 100%;
-    object-fit: cover;
-  }
+/* Recipe Image */
+.recipe__fig {
+  text-align: center;
+}
 
-  &__title {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 20%) skewY(-6deg);
-    color: #fff;
-    font-weight: 700;
-    font-size: 3.25rem;
-    text-transform: uppercase;
-    width: 50%;
-    line-height: 1.95;
-    text-align: center;
+.recipe__img {
+  width: 100%;    /* Makes image responsive */
+  max-height: 400px; /* Limits height to 400px */
+  object-fit: cover; /* Ensures the image is cropped properly */
+  border-radius: 10px; /* Optional: Rounds the corners */
+}
 
-    span {
-      -webkit-box-decoration-break: clone;
-      box-decoration-break: clone;
-      padding: 1.3rem 2rem;
-      background-image: linear-gradient(
-        to right bottom,
-        $color-grad-1,
-        $color-grad-2
-      );
-    }
 
-    @media only screen and (max-width: $bp-medium) {
-      width: 70%;
-    }
-  }
+/* Recipe Title */
+.recipe__title {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
+  color: var(--color-grey-dark-2, #333);
+}
 
-  ///////////
-  // DETAILS
-  &__details {
-    display: flex;
-    align-items: center;
-    padding: 7.5rem 8rem 3.5rem 8rem;
-  }
+/* Recipe Details */
+.recipe__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 12px;
+  border-top: 2px solid var(--color-grey-light-2, #ececec);
+}
 
-  &__info {
-    font-size: 1.65rem;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
+.recipe__info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-grey-dark-1, #555);
+}
 
-    &:not(:last-child) {
-      margin-right: 4.5rem;
-    }
-  }
+.recipe__info-icon {
+  width: 22px;
+  height: 22px;
+  fill: var(--color-primary, #ff6b6b);
+}
 
-  &__info-icon {
-    height: 2.35rem;
-    width: 2.35rem;
-    fill: $color-primary;
-    margin-right: 1.15rem;
-  }
+/* Servings Controls */
+.recipe__info-buttons {
+  display: flex;
+  gap: 6px;
+}
 
-  &__info-data {
-    margin-right: 0.5rem;
-    font-weight: 700;
-  }
+.btn--tiny {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
-  &__info-buttons {
-    display: flex;
-    margin-left: 1.6rem;
-    transform: translateY(-1px);
-  }
+.btn--tiny svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--color-primary, #ff6b6b);
+}
 
-  &__user-generated {
-    background-color: darken($color-grey-light-2, 2%);
+.btn--tiny:hover {
+  transform: scale(1.1);
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 10rem;
+/* Ingredients */
+.recipe__ingredients {
+  margin-top: 25px;
+}
 
-    margin-left: auto;
-    margin-right: 1.75rem;
+.recipe__ingredient-list {
+  list-style: none;
+  padding: 0;
+}
 
-    svg {
-      height: 2.25rem;
-      width: 2.25rem;
-      fill: $color-primary;
-    }
-  }
+.recipe__ingredient {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-grey-light-2, #ececec);
+}
 
-  ///////////
-  // INGREDIENTS
-  &__ingredients {
-    padding: 5rem 8rem;
-    font-size: 1.6rem;
-    line-height: 1.4;
-    background-color: $color-grey-light-2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.recipe__icon {
+  width: 22px;
+  height: 22px;
+  fill: #4caf50;
+}
 
-  &__ingredient-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem 3rem;
-    list-style: none;
-  }
+/* Directions */
+.recipe__directions {
+  margin-top: 25px;
+}
 
-  &__ingredient {
-    display: flex;
-  }
+.recipe__directions-text {
+  font-size: 17px;
+  color: var(--color-grey-dark-1, #555);
+  line-height: 1.6;
+}
 
-  &__icon {
-    height: 2rem;
-    width: 2rem;
-    fill: $color-primary;
-    margin-right: 1.1rem;
-    flex: 0 0 auto;
-    margin-top: 0.1rem;
-  }
+.recipe__publisher {
+  font-weight: bold;
+  color: var(--color-grey-dark-2, #333);
+}
 
-  &__quantity {
-    margin-right: 0.5rem;
-    flex: 0 0 auto;
-  }
+.recipe__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary, #ff6b6b);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-top: 12px;
+  transition: background 0.2s ease-in-out;
+}
 
-  ///////////
-  // DIRECTIONS
-  &__directions {
-    padding: 5rem 10rem;
-    padding-bottom: 5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.recipe__btn:hover {
+  background: #d43f00;
+}
 
-  &__directions-text {
-    font-size: 1.7rem;
-    text-align: center;
-    margin-bottom: 3.5rem;
-    color: $color-grey-dark-2;
-  }
-
-  &__publisher {
-    font-weight: 700;
-  }
+.recipe__btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
 }

@@ -13,16 +13,31 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html">
-    <sly data-sly-call="${clientlib.css @ categories='myecommerce.base'}"/>
-    <sly data-sly-call="${clientlib.css @ categories='myecommerce.cif'}" />
-    <sly data-sly-call="${clientlib.css @ categories='myecommerce.forkify'}" />
-         <link
-      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
-      rel="stylesheet"
-    />
-     <link rel="shortcut icon" href="content/dam/myecommerce/asset.jpg" type="image/x-icon" />
+<sly
+  data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html"
+>
+  <sly data-sly-call="${clientlib.css @ categories='myecommerce.base'}" />
+  <sly data-sly-call="${clientlib.css @ categories='myecommerce.cif'}" />
+  <sly data-sly-call="${clientlib.css @ categories='myecommerce.forkify'}" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
+    rel="stylesheet"
+  />
+  <link
+    rel="shortcut icon"
+    href="content/dam/myecommerce/asset.jpg"
+    type="image/x-icon"
+  />
+
+
 
 </sly>
 
-<sly data-sly-resource="${'contexthub' @ resourceType='granite/contexthub/components/contexthub'}"/>
+
+<sly
+  data-sly-resource="${'contexthub' @ resourceType='granite/contexthub/components/contexthub'}"
+/>

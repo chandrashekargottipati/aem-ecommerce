@@ -1,1 +1,108 @@
-!function(){var e={834:function(e,t,n){"use strict";n(834),n(356)},356:function(){!function(){"use strict";var e='[data-cmp-is="helloworld"]',t='[data-cmp-hook-helloworld="property"]',n='[data-cmp-hook-helloworld="model"]';function o(e){e&&e.element&&function(e){e.element.removeAttribute("data-cmp-is");var o=e.element.querySelectorAll(t);o=1==o.length?o[0].textContent:null;var r=e.element.querySelectorAll(n);r=1==r.length?r[0].textContent:null,console&&console.log&&console.log("HelloWorld component JavaScript example","\nText property:\n",o,"\nModel message:\n",r)}(e)}function r(){for(var t=document.querySelectorAll(e),n=0;n<t.length;n++)new o({element:t[n]});var r=window.MutationObserver||window.WebKitMutationObserver||window.MozMutationObserver,l=document.querySelector("body");new r((function(t){t.forEach((function(t){var n=[].slice.call(t.addedNodes);n.length>0&&n.forEach((function(t){t.querySelectorAll&&[].slice.call(t.querySelectorAll(e)).forEach((function(e){new o({element:e})}))}))}))})).observe(l,{subtree:!0,childList:!0,characterData:!0})}"loading"!==document.readyState?r():document.addEventListener("DOMContentLoaded",r)}()}},t={};function n(o){var r=t[o];if(void 0!==r)return r.exports;var l=t[o]={exports:{}};return e[o](l,l.exports,n),l.exports}n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,{a:t}),t},n.d=function(e,t){for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)};n(834)}();
+document.addEventListener('DOMContentLoaded', function () {
+  const recipeContainer = document.querySelector('.recipe');
+
+  if (!recipeContainer) {
+    console.error("Error: Recipe container not found.");
+    return;
+  }
+
+  const getRecipe = async function () {
+    try {
+      const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886');
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+      let { recipe } = data.data;
+      recipe = {
+        id: recipe.id,
+        title: recipe.title,
+        publisher: recipe.publisher,
+        sourceUrl: recipe.source_url,
+        image: recipe.image_url,
+        servings: recipe.servings,
+        cookingTime: recipe.cooking_time,
+        ingredients: recipe.ingredients
+      };
+
+      // Generate dynamic ingredient list
+      const ingredientsMarkup = recipe.ingredients
+        .map(ing => `
+          <li class="recipe__ingredient">
+            <i class="fa-solid fa-check"></i>  <!-- FontAwesome Check Icon -->
+            <div class="recipe__quantity">${ing.quantity || ''}</div>
+            <div class="recipe__description">
+              <span class="recipe__unit">${ing.unit || ''}</span>
+              ${ing.description}
+            </div>
+          </li>
+        `)
+        .join('');
+
+      // Full markup including ingredients
+      const markup = `
+        <figure class="recipe__fig">
+          <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" />
+          <h1 class="recipe__title">
+            <span>${recipe.title}</span>
+          </h1>
+        </figure>
+
+        <div class="recipe__details">
+          <div class="recipe__info">
+            <i class="fa-solid fa-clock"></i>  <!-- Clock Icon -->
+            <span class="recipe__info-data">${recipe.cookingTime}</span>
+            <span class="recipe__info-text">minutes</span>
+          </div>
+          <div class="recipe__info">
+            <i class="fa-solid fa-users"></i>  <!-- Users Icon -->
+            <span class="recipe__info-data">${recipe.servings}</span>
+            <span class="recipe__info-text">servings</span>
+
+            <div class="recipe__info-buttons">
+              <button class="btn--tiny btn--increase-servings">
+                <i class="fa-solid fa-minus-circle"></i>  <!-- Minus Icon -->
+              </button>
+              <button class="btn--tiny btn--increase-servings">
+                <i class="fa-solid fa-plus-circle"></i>  <!-- Plus Icon -->
+              </button>
+            </div>
+          </div>
+
+          <div class="recipe__user-generated">
+            <i class="fa-solid fa-user"></i>  <!-- User Icon -->
+          </div>
+          <button class="btn--round">
+            <i class="fa-solid fa-bookmark"></i>  <!-- Bookmark Icon -->
+          </button>
+        </div>
+
+        <div class="recipe__ingredients">
+          <h2 class="heading--2">Recipe Ingredients</h2>
+          <ul class="recipe__ingredient-list">
+            ${ingredientsMarkup}  <!-- Injects dynamic ingredients -->
+          </ul>
+        </div>
+
+        <div class="recipe__directions">
+          <h2 class="heading--2">How to cook it</h2>
+          <p class="recipe__directions-text">
+            This recipe was created by <span class="recipe__publisher">${recipe.publisher}</span>.
+            Check out the full instructions on their website.
+          </p>
+          <a class="btn--small recipe__btn" href="${recipe.sourceUrl}" target="_blank">
+            <span>Directions</span>
+            <i class="fa-solid fa-arrow-right"></i>  <!-- Arrow Icon -->
+          </a>
+        </div>
+      `;
+
+      recipeContainer.innerHTML = markup;
+    } catch (error) {
+      console.error("Error fetching recipe:", error);
+      alert(error.message);
+    }
+  };
+
+  getRecipe();
+});
