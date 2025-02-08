@@ -16,12 +16,11 @@ body {
 
 /* Increase container width */
 .container {
-  width: 95%;  /* Increase width */
-  max-width: 1400px;  /* Allow more space on larger screens */
+  width: 95%; /* Increase width */
+  max-width: 1400px; /* Allow more space on larger screens */
   margin: 0 auto;
   padding: 10px;
 }
-
 
 /* Header */
 .header {
@@ -79,7 +78,6 @@ body {
   transition: all 0.3s;
   margin-left: 50px; /* Moves the button slightly to the right */
 }
-
 
 .search__btn:hover {
   background: #e45757;
